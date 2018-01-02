@@ -3,10 +3,11 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
+#include "utilities.h"
 
 const int tile_size;
 
-vec2 map_size;
+vec2i map_size;
 
 typedef enum
 {
@@ -20,16 +21,18 @@ typedef struct
 {
     vec2 pos;
     tile_type type;
+    SDL_Rect dst;
     SDL_Texture *texture;
 }
 tile;
 
 typedef struct
 {
-    tile tiles[map_size.x][map_size.y];
+    tile tiles[0xFFFF][0xFFFF];
 }
 map;
 
-map_tile_render(tile *tl);
+void map_tiles_init(map *mp);
+void map_tiles_render(map *mp);
 
 #endif
