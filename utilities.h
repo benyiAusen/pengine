@@ -14,7 +14,14 @@ typedef enum
 	UTILS_LOG_TYPE_INFO,
 	UTILS_LOG_TYPE_WARNING,
 	UTILS_LOG_TYPE_ERROR
-}utils_log_type;
+}
+utils_log_type;
+
+typedef struct
+{
+    double x, y;
+}
+vec2;
 
 void utils_clear_uint8_array(unsigned char *array);
 void utils_log_print(utils_log_type type, char *function, char *message);
