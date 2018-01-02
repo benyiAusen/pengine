@@ -6,6 +6,7 @@
 #include <math.h>
 #include <SDL.h>
 #include <SDL_image.h>
+#include "utilities.h"
 
 double gravity;
 double friction;
@@ -21,12 +22,6 @@ enum entity_states
     ENTITY_STATE_WAS_ON_CEILING,
     ENTITY_STATE_IS_ON_CEILING
 };
-
-typedef struct
-{
-    double x, y;
-}
-vec2;
 
 typedef struct
 {

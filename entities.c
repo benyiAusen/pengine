@@ -1,5 +1,4 @@
 #include "entities.h"
-#include "utilities.h"
 #include "globals.h"
 #include "input.h"
 

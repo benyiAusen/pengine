@@ -3,15 +3,21 @@
 #include "globals.h"
 #include "input.h"
 #include "entities.h"
+#include "map.h"
 
 int main()
 {
     //initialization
     main_init_program();
 
+    map g;
+    map_tiles_init(&g);
+
     entity k;
     entity_init(&k);
     
+
+
     while(main_is_running)
     {
         //update deltatime
@@ -46,6 +52,7 @@ int main()
         SDL_RenderClear(renderer);
 
         SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+        map_tiles_render(&g);
 	entity_render(&k);
 
         SDL_RenderPresent(renderer);

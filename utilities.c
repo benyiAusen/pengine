@@ -1,11 +1,6 @@
 #include "utilities.h"
 #include "globals.h"
 
-void utils_clear_uint8_array(unsigned char *array)
-{
-    for(int i=0; i < utils_array_size(array); i++) array[i] = 0;
-}
-
 void utils_log_print(utils_log_type type, char *function, char *message)
 {
 	char *str_type;
