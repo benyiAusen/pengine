@@ -1,26 +1,26 @@
 #Simple makefile template
 
-COM = clang #Compiler to be used
-OBJS = main.c entities.c globals.c input.c utilities.c map.c #Objects to be compiled (.c)
+COM = gcc #Compiler to be used (gcc, clang, clang++, etc.)
+OBJS = main.c entities.c globals.c input.c utilities.c map.c #Objects to be compiled (.c or .cpp files)
 COM_FLAGS = -O2 -march=native -fomit-frame-pointer -std=c11 -Wall -pedantic #Compiler flags
-INC_DIRS = -I/usr/include/SDL2 
-LNK_FLAGS = -lSDL2 -lSDL2main -lSDL2_image -lm #Linker flags
+
+WIN_MINGW_PATH = C:/msys64/mingw64
+
+INC_DIRS = -I/usr/include/SDL2 #Include directories
+WIN_INC_DIRS = -I$(WIN_MINGW_PATH)/include/SDL2 #Include directories for Windows
+
+LNK_FLAGS = -lSDL2main -lSDL2 -lSDL2_image -lm #Linker flags
+WIN_LNK_FLAGS = -Dmain=SDL_main -L$(WIN_MINGW_PATH)/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lm -mwindows #Linker flags for Windows
+
 EXE = PROGRAM #Name of the final executable
+
+
 
 all: $(OBJS)
 	$(COM) $(OBJS) $(COM_FLAGS) $(INC_DIRS) $(LNK_FLAGS) -o $(EXE)
 
-main: main.c
-	$(COM) $(COM_FLAGS) -c main.c
-
-entities: entities.c
-	$(COM) $(COM_FLAGS) -c entities.c
-	
-globals: globals.c
-	$(COM) $(COM_FLAGS) -c globals.c
-	
-input: input.c
-	$(COM) $(COM_FLAGS) -c input.c
+win: $(OBJS)
+	$(COM) $(OBJS) $(COM_FLAGS) $(WIN_INC_DIRS) $(WIN_LNK_FLAGS) -o $(EXE)
 
 clean:
 	rm -f $(EXE) *.o
