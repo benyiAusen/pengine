@@ -3,7 +3,6 @@
 #include "globals.h"
 #include "input.h"
 #include "entities.h"
-#include "map.h"
 
 int main(int argc, char **argv)
 {
@@ -12,8 +11,6 @@ int main(int argc, char **argv)
 
     entity k;
     entity_init(&k);
-    
-
 
     while(main_is_running)
     {

@@ -1,7 +1,7 @@
 #Simple makefile template
 
 COM = gcc #Compiler to be used (gcc, clang, clang++, etc.)
-OBJS = main.c entities.c globals.c input.c utilities.c map.c #Objects to be compiled (.c or .cpp files)
+OBJS = main.c entities.c globals.c input.c utilities.c #Objects to be compiled (.c or .cpp files)
 COM_FLAGS = -O2 -march=native -fomit-frame-pointer -std=c11 -Wall -pedantic #Compiler flags
 
 WIN_MINGW_PATH = C:/msys64/mingw64
