@@ -3,6 +3,7 @@
 #include "globals.h"
 #include "input.h"
 #include "entities.h"
+#include "map.h"
 
 int main(int argc, char **argv)
 {
