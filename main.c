@@ -13,8 +13,19 @@ int main(int argc, char **argv)
     entity k;
     entity_init(&k);
 
+    map g;
+    map_init(&g, "assets/test_map.tmx");
+
     while(main_is_running)
     {
+        //check if a fatal error has happened, and quit if it has...
+        if(global_has_fatal_error)
+        {
+            utils_log_print(UTILS_LOG_TYPE_INFO, "main()", "closing due to fatal error...");
+            main_quit_program();
+            return 1;
+        }
+
         //update deltatime
         global_timelast = global_timenow;
         global_timenow = SDL_GetPerformanceCounter();
@@ -59,7 +70,7 @@ int main(int argc, char **argv)
 void main_init_program()
 {
     char welcome_msg[60];    
-    sprintf(welcome_msg, "platformer WIP engine version %s, running on %s.", MAIN_VERSION, MAIN_ENV);
+    sprintf(welcome_msg, "pengine: SDL2 Platformer written in C %s, running on %s.", MAIN_VERSION, MAIN_ENV);
 
     utils_log_print(UTILS_LOG_TYPE_INFO, "main_init_program()", welcome_msg);    
 
@@ -74,8 +85,11 @@ void main_init_program()
     main_is_running = 1;
     SDL_GetPerformanceCounter();
 
-    window = SDL_CreateWindow( "SDL Platformer in C", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1024, 600, SDL_WINDOW_SHOWN );
+    window = SDL_CreateWindow( "pengine: SDL Platformer Engine written in C", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1024, 600, SDL_WINDOW_SHOWN );
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+    tmx_img_load_func = (void*(*)(const char*))map_tmx_imgload_ptr;
+    tmx_img_free_func = (void (*)(void*))      SDL_DestroyTexture;
 }
 
 void main_quit_program()

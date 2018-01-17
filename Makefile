@@ -15,7 +15,7 @@ WIN_INC_DIRS = -I$(WIN_MINGW_PATH)/include/SDL2 #Include directories for Windows
 WIN_LIB_DIRS = -L$(WIN_MINGW_PATH)/lib/libxml2 #Library directories for Windows
 
 LNK_FLAGS     = -lSDL2main -lSDL2 -lSDL2_image -lm -ltmx -lz -lxml2  #Linker flags
-WIN_LNK_FLAGS = -Dmain=SDL_main -mwindows -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lm -ltmx -lz -lxml2  #Linker flags for Windows
+WIN_LNK_FLAGS = -Dmain=SDL_main -mconsole -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lm -ltmx -lz -lxml2  #Linker flags for Windows
 
 EXE = PROGRAM
 
@@ -28,4 +28,4 @@ win: $(OBJS)
 	$(COM) -o $(EXE) $(OBJS) $(WIN_INC_DIRS) $(WIN_LNK_FLAGS)
 
 clean:
-	rm -f $(EXE) *.o *.swp
+	rm -f $(EXE) *.o *.swp .*.swp

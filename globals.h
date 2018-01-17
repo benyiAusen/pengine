@@ -3,6 +3,8 @@
 
 #include <SDL.h>
 
+extern unsigned char global_has_fatal_error;
+
 extern SDL_Window *window;
 extern SDL_Renderer *renderer;
 

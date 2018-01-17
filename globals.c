@@ -3,6 +3,7 @@
 SDL_Window *window = NULL;
 SDL_Renderer *renderer = NULL;
 
+unsigned char global_has_fatal_error = 0;
 double global_timenow = 0;
 double global_timelast = 0;
 double global_deltatime = 0;
