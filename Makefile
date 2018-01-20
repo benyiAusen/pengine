@@ -21,7 +21,7 @@ EXE = PROGRAM
 
 
 all: $(OBJS)
-	$(COM) -o $(EXE) $(OBJS) $(WIN_INC_DIRS) $(WIN_LNK_FLAGS)
+	$(COM) -o $(EXE) $(OBJS) $(INC_DIRS) $(LNK_FLAGS)
 
 #Microsoft WinHell
 win: $(OBJS)
