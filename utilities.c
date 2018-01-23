@@ -28,6 +28,20 @@ void utils_log_print(utils_log_type type, char *function, char *message)
 	printf("\n[%s, %s]: %s", function, str_type, message);
 }
 
+
+char *utils_get_version()
+{
+    static char vbuf[5]; //4 chars + NUL terminator = 5 bytes long.
+    
+    for(unsigned char i=0; i<4; i++)
+        vbuf[i] = global_program_version[i];
+    
+    //overwrite the 4th char with the platform letter.
+    vbuf[4] = global_program_envchar;
+
+    return vbuf;
+}
+
 SDL_Texture *utils_load_texture(char *file_path)
 {
     SDL_Surface *tmp = IMG_Load(file_path);

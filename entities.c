@@ -21,7 +21,7 @@ unsigned char entity_aabb_test(aabb *box)
 
 void entity_init(entity *ent)
 {
-    ent->tex = utils_load_texture("assets/test0.png");
+    ent->tex = utils_load_texture("assets/img/test0.png");
     ent->curr_pos.x = 0;
     ent->curr_pos.y = 0;
     ent->box.halfsize.x = 16, ent->box.halfsize.y = 16;

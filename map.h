@@ -16,6 +16,7 @@ void map_init(map *mp, const char *filename);
 void *map_tmx_imgload_ptr(const char *filename);
 void map_draw_layer(tmx_map *tilemap, tmx_layer *layer);
 void map_draw_img_layer(tmx_image *img);
+void map_draw(map *mp);
 unsigned int map_clear_gid_flags(unsigned int gid);
 void map_unload(map *mp);
 

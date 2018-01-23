@@ -6,6 +6,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <stdio.h>
+#include <string.h>
 
 #define utils_array_size(a) sizeof(a)/sizeof(a[0])
 #define utils_array_clear(a) for(int i = 0; i<a; i+=sizeof(a)) { a[i]=0 }
@@ -31,6 +32,7 @@ typedef struct
 vec2i;
 
 void utils_log_print(utils_log_type type, char *function, char *message);
+char *utils_get_version();
 SDL_Texture *utils_load_texture(char *file_path);
 
 #endif

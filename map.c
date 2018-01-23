@@ -50,16 +50,13 @@ void map_draw_layer(tmx_map *tilemap, tmx_layer *layer)
                 src.h = dst.h = tmxtset->tile_height;
 
                 dst.x = x * tmxtset->tile_width;
-                dst.y = y * tmxtset->tile_height;
+                dst.y = y * tmxtset->tile_height + 96;
 
                 if(tmximg)
-                {
                     tileset = (SDL_Texture*)tmximg->resource_image;
-                }
                 else
-                {
                     tileset = (SDL_Texture*)tmxtset->image->resource_image;
-                }
+
                 SDL_RenderCopy(renderer, tileset, &src, &dst);
             }
         }
@@ -76,7 +73,10 @@ void map_draw_img_layer(tmx_image *img)
     SDL_RenderCopy(renderer, (SDL_Texture*)img->resource_image, NULL, &dim);
 }
 
-//void
+void map_draw(map *mp)
+{
+        map_draw_layer(mp->tilemap, mp->tilemap->ly_head);
+}
 
 unsigned int map_clear_gid_flags(unsigned int gid)
 {
