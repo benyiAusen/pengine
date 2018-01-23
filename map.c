@@ -8,7 +8,7 @@ void map_init(map *mp, const char* filename)
 
     if(!mp->tilemap)
     {
-        utils_log_print(UTILS_LOG_TYPE_ERROR, "map_init()", "FATAL: could not load the target map. ->");
+        utils_log_print(UTILS_LOG_TYPE_FATAL, "map_init()", "could not load the target map. ->");
         tmx_perror("tmx_load");
         global_has_fatal_error = 1;
     }
@@ -78,7 +78,7 @@ void map_draw_img_layer(tmx_image *img)
 
 //void
 
-void map_clear_gid_flags(unsigned int gid);
+unsigned int map_clear_gid_flags(unsigned int gid)
 {
     return gid & TMX_FLIP_BITS_REMOVAL;
 }
@@ -88,3 +88,4 @@ void map_unload(map *mp)
     tmx_map_free(mp->tilemap);
     utils_log_print(UTILS_LOG_TYPE_INFO, "map_unload()", "unloaded map from memory.");
 }
+

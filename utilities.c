@@ -8,11 +8,20 @@ void utils_log_print(utils_log_type type, char *function, char *message)
 	switch(type)
 	{
 	case UTILS_LOG_TYPE_INFO:
-		str_type = "INFO"; break;
+		str_type = "INFO";
+                break;
+
 	case UTILS_LOG_TYPE_WARNING:
-		str_type = "WARNING"; break;
+		str_type = "WARNING";
+                break;
+
 	case UTILS_LOG_TYPE_ERROR:
-		str_type = "ERROR"; break;
+		str_type = "ERROR";
+                break;
+
+        case UTILS_LOG_TYPE_FATAL:
+                str_type = "FATAL";
+                break;
 	default:
 		str_type = "???";
 	}

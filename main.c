@@ -75,7 +75,10 @@ void main_init_program()
     utils_log_print(UTILS_LOG_TYPE_INFO, "main_init_program()", welcome_msg);    
 
     if(SDL_Init(SDL_INIT_EVERYTHING) != 0)
-        utils_log_print(UTILS_LOG_TYPE_ERROR, "main_init_program()", (char*)SDL_GetError());
+    {
+        utils_log_print(UTILS_LOG_TYPE_FATAL, "main_init_program()", (char*)SDL_GetError());
+        global_has_fatal_error = 1;
+    }
     else
         utils_log_print(UTILS_LOG_TYPE_INFO, "main_init_program()", "SDL2 online.");
 
@@ -94,7 +97,7 @@ void main_init_program()
 
 void main_quit_program()
 {
-    utils_log_print(UTILS_LOG_TYPE_INFO, "main_init_program()", "terminating main program. goodbye.\n");
+    utils_log_print(UTILS_LOG_TYPE_INFO, "main_quit_program()", "terminating main program. goodbye.\n");
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
