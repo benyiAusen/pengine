@@ -2,7 +2,7 @@
 
 COM = gcc #Compiler to be used (gcc, g++, clang, clang++, etc.)
 
-OBJS = main.c entities.c globals.c input.c utilities.c map.c #Objects to be compiled (.c or .cpp files)
+OBJS = main.c entities.c globals.c input.c utilities.c map.c camera.c #Objects to be compiled (.c or .cpp files)
 
 COM_FLAGS = -O2 -march=native -fomit-frame-pointer -std=c11 -Wall -pedantic #Compiler flags
 
@@ -21,7 +21,7 @@ EXE = PROGRAM
 
 
 all: $(OBJS)
-	$(COM) -o $(EXE) $(OBJS) $(INC_DIRS) $(LNK_FLAGS)
+	$(COM) $(COM_FLAGS) -o $(EXE) $(OBJS) $(INC_DIRS) $(LNK_FLAGS)
 
 #Microsoft WinHell
 win: $(OBJS)
