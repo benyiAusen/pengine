@@ -4,17 +4,20 @@
 #include "input.h"
 #include "entities.h"
 #include "map.h"
+#include "camera.h"
 
 int main(int argc, char **argv)
 {
     //initialization
     main_init_program();
-
-    entity k;
-    entity_init(&k);
-
+    
     map g;
     map_init(&g, "assets/map/map0.tmx");
+
+    ent_init_sprite(&level_cam, ENT_SPRITE_CAMERA, 0, 0);
+    
+    ent_player pp;
+    ent_init_player(&pp, 320, 320);
 
     while(main_is_running)
     {
@@ -46,12 +49,16 @@ int main(int argc, char **argv)
         //update
         key_states = (unsigned char*)SDL_GetKeyboardState(NULL);
         input_update_keymarkers();
-       
-        entity_update(&k);
+        ent_update_player(&pp);
 
-        //logic
+        ent_update_sprite(&level_cam);
+        
+        //special keys
+        
         if(input_keymarkers[INPUT_MOD_ESCAPE])
             main_is_running = 0;
+        
+
 
         //rendering
         SDL_SetRenderDrawColor(renderer, 0x0, 0x0, 0x40, 0xFF);
@@ -59,7 +66,7 @@ int main(int argc, char **argv)
 
         SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
         map_draw(&g);
-	entity_render(&k);
+        ent_render(&pp, ENT_PLAYER);
 
         SDL_RenderPresent(renderer);
     }

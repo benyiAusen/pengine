@@ -1,6 +1,7 @@
 #include "map.h"
 #include "utilities.h"
 #include "globals.h"
+#include "camera.h"
 
 void map_init(map *mp, const char* filename)
 {
@@ -24,14 +25,14 @@ void *map_tmx_imgload_ptr(const char *filename)
 void map_draw_layer(tmx_map *tilemap, tmx_layer *layer)
 {
     unsigned int     gid;
-    float             op;
+    //FIXME: float             op;
     tmx_tileset *tmxtset;
     tmx_image    *tmximg;
 
     SDL_Rect        src, dst;
     SDL_Texture     *tileset;
 
-    op = layer->opacity;
+    //FIXME: op = layer->opacity;
 
     for(long y = 0; y < tilemap->height; y++)
     {
@@ -49,8 +50,8 @@ void map_draw_layer(tmx_map *tilemap, tmx_layer *layer)
                 src.w = dst.w = tmxtset->tile_width;
                 src.h = dst.h = tmxtset->tile_height;
 
-                dst.x = x * tmxtset->tile_width;
-                dst.y = y * tmxtset->tile_height + 96;
+                dst.x = x * tmxtset->tile_width + level_cam.c_pos.x;
+                dst.y = y * tmxtset->tile_height + level_cam.c_pos.y;
 
                 if(tmximg)
                     tileset = (SDL_Texture*)tmximg->resource_image;
